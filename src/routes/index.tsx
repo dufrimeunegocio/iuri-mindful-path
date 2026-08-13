@@ -250,15 +250,17 @@ function Index() {
             Se você se reconhece em alguma dessas situações, há um caminho possível.
           </p>
           <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {problemas.map((p) => (
-              <article
-                key={p.title}
-                className="rounded-2xl border border-border bg-card p-8 transition-shadow hover:shadow-[var(--shadow-soft)]"
-              >
-                <p.icon className="h-8 w-8 text-graphite" strokeWidth={1.5} />
-                <h3 className="mt-5 text-xl text-graphite">{p.title}</h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{p.text}</p>
-              </article>
+            {problemas.map((p, i) => (
+              <Reveal key={p.title} delay={i * 90}>
+                <article className="hover-lift group h-full rounded-2xl border border-border bg-card p-8 hover:border-primary/40">
+                  <p.icon
+                    className="h-8 w-8 text-graphite transition-colors group-hover:text-primary"
+                    strokeWidth={1.5}
+                  />
+                  <h3 className="mt-5 text-xl text-graphite">{p.title}</h3>
+                  <p className="mt-3 leading-relaxed text-muted-foreground">{p.text}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -269,19 +271,18 @@ function Index() {
         <div className="mx-auto max-w-6xl px-5 py-28">
           <h2 className="text-3xl text-graphite md:text-4xl">Serviços</h2>
           <div className="mt-14 grid gap-8 md:grid-cols-2">
-            {servicos.map((s) => (
-              <article
-                key={s.title}
-                className="flex gap-5 rounded-2xl border border-border bg-background p-8"
-              >
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-secondary">
-                  <s.icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
-                </span>
-                <div>
-                  <h3 className="text-xl text-graphite">{s.title}</h3>
-                  <p className="mt-2 leading-relaxed text-muted-foreground">{s.text}</p>
-                </div>
-              </article>
+            {servicos.map((s, i) => (
+              <Reveal key={s.title} delay={i * 90}>
+                <article className="hover-lift group flex h-full gap-5 rounded-2xl border border-border bg-background p-8 hover:border-primary/40">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-secondary transition-transform duration-300 group-hover:scale-110">
+                    <s.icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
+                  </span>
+                  <div>
+                    <h3 className="text-xl text-graphite">{s.title}</h3>
+                    <p className="mt-2 leading-relaxed text-muted-foreground">{s.text}</p>
+                  </div>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -335,12 +336,16 @@ function Index() {
         <div className="mx-auto max-w-6xl px-5 py-28">
           <h2 className="text-3xl text-secondary md:text-4xl">Como funciona o atendimento</h2>
           <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {etapas.map((e) => (
-              <div key={e.n} className="border-t border-secondary/25 pt-6">
-                <p className="font-display text-4xl text-secondary/50">{e.n}</p>
-                <h3 className="mt-4 text-xl text-secondary">{e.title}</h3>
-                <p className="mt-3 leading-relaxed text-secondary/70">{e.text}</p>
-              </div>
+            {etapas.map((e, i) => (
+              <Reveal key={e.n} delay={i * 100}>
+                <div className="group border-t border-secondary/25 pt-6 transition-colors hover:border-secondary/70">
+                  <p className="font-display text-4xl text-secondary/50 transition-colors group-hover:text-secondary">
+                    {e.n}
+                  </p>
+                  <h3 className="mt-4 text-xl text-secondary">{e.title}</h3>
+                  <p className="mt-3 leading-relaxed text-secondary/70">{e.text}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
