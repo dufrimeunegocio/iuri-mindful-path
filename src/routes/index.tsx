@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Scheduler } from "@/components/site/Scheduler";
-import heroImg from "@/assets/hero-novo.jpg.asset.json";
+import heroImg from "@/assets/hero-v2.png.asset.json";
 import sobreImg from "@/assets/sobre.png.asset.json";
 import logoMenu from "@/assets/logo-menu.png.asset.json";
 import logoRodape from "@/assets/logo-rodape.png.asset.json";
