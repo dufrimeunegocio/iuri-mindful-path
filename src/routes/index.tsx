@@ -7,18 +7,24 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Scheduler } from "@/components/site/Scheduler";
-import heroImg from "@/assets/hero-v2.png.asset.json";
+import { Reveal, ScrollProgress } from "@/components/site/Reveal";
+import heroImg from "@/assets/hero-v3.png.asset.json";
 import sobreImg from "@/assets/sobre.png.asset.json";
 import logoMenu from "@/assets/logo-menu.png.asset.json";
 import logoRodape from "@/assets/logo-rodape.png.asset.json";
 import {
   Brain,
+  ArrowRight,
+  CalendarDays,
   CloudRain,
   HeartCrack,
   Instagram,
+  MessageCircle,
   Mail,
   MapPin,
   Phone,
+  ShieldCheck,
+  Sparkles,
   Trophy,
   Users,
   Video,
@@ -162,6 +168,7 @@ const MAPA =
 function Index() {
   return (
     <div className="min-h-screen bg-background">
+      <ScrollProgress />
       <header className="sticky top-0 z-50 border-b border-border/70 bg-card/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
           <img
@@ -174,13 +181,17 @@ function Index() {
               <a
                 key={n.href}
                 href={n.href}
-                className="text-base font-medium text-graphite/80 transition-colors hover:text-primary"
+                className="story-link text-base font-medium text-graphite/80 transition-colors hover:text-primary"
               >
                 {n.label}
               </a>
             ))}
           </nav>
-          <Button asChild size="lg" className="rounded-full px-7 text-base font-semibold">
+          <Button
+            asChild
+            size="lg"
+            className="shine rounded-full px-7 text-base font-semibold transition-transform hover:scale-[1.04]"
+          >
             <a href="#contato">Agendar</a>
           </Button>
         </div>
@@ -188,9 +199,12 @@ function Index() {
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-card">
+        <div className="pointer-events-none absolute -left-32 top-10 h-96 w-96 rounded-full bg-secondary/50 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
         <div className="mx-auto grid max-w-6xl items-center gap-14 px-5 py-24 md:py-32 lg:grid-cols-2">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-graphite/60">
+          <Reveal>
+            <p className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-[11px] uppercase tracking-[0.25em] text-graphite/70">
+              <Sparkles className="h-3.5 w-3.5 text-primary" strokeWidth={2} />
               Psicanálise · Esporte · Organizações
             </p>
             <h1 className="mt-6 text-4xl leading-[1.08] text-graphite md:text-6xl">
@@ -208,20 +222,21 @@ function Index() {
               <Button
                 asChild
                 size="lg"
-                className="h-14 rounded-full px-10 text-lg font-semibold"
+                className="shine h-14 rounded-full px-10 text-lg font-semibold transition-transform hover:scale-[1.03]"
               >
                 <a href="#contato">Agendar minha sessão</a>
               </Button>
             </div>
-          </div>
-          <div className="relative">
+          </Reveal>
+          <Reveal delay={150} className="relative">
             <div className="absolute inset-x-8 bottom-8 top-16 rounded-[2.5rem] bg-secondary/70" />
+            <div className="absolute inset-x-16 bottom-16 top-24 rounded-[2.5rem] border border-primary/15" />
             <img
               src={heroImg.url}
               alt="Iuri Dall Olmo sentado em sua poltrona de atendimento"
-              className="relative w-full"
+              className="relative w-full float-soft drop-shadow-[0_30px_45px_rgba(0,0,0,0.15)]"
             />
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -235,15 +250,17 @@ function Index() {
             Se você se reconhece em alguma dessas situações, há um caminho possível.
           </p>
           <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {problemas.map((p) => (
-              <article
-                key={p.title}
-                className="rounded-2xl border border-border bg-card p-8 transition-shadow hover:shadow-[var(--shadow-soft)]"
-              >
-                <p.icon className="h-8 w-8 text-graphite" strokeWidth={1.5} />
-                <h3 className="mt-5 text-xl text-graphite">{p.title}</h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{p.text}</p>
-              </article>
+            {problemas.map((p, i) => (
+              <Reveal key={p.title} delay={i * 90}>
+                <article className="hover-lift group h-full rounded-2xl border border-border bg-card p-8 hover:border-primary/40">
+                  <p.icon
+                    className="h-8 w-8 text-graphite transition-colors group-hover:text-primary"
+                    strokeWidth={1.5}
+                  />
+                  <h3 className="mt-5 text-xl text-graphite">{p.title}</h3>
+                  <p className="mt-3 leading-relaxed text-muted-foreground">{p.text}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -254,19 +271,18 @@ function Index() {
         <div className="mx-auto max-w-6xl px-5 py-28">
           <h2 className="text-3xl text-graphite md:text-4xl">Serviços</h2>
           <div className="mt-14 grid gap-8 md:grid-cols-2">
-            {servicos.map((s) => (
-              <article
-                key={s.title}
-                className="flex gap-5 rounded-2xl border border-border bg-background p-8"
-              >
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-secondary">
-                  <s.icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
-                </span>
-                <div>
-                  <h3 className="text-xl text-graphite">{s.title}</h3>
-                  <p className="mt-2 leading-relaxed text-muted-foreground">{s.text}</p>
-                </div>
-              </article>
+            {servicos.map((s, i) => (
+              <Reveal key={s.title} delay={i * 90}>
+                <article className="hover-lift group flex h-full gap-5 rounded-2xl border border-border bg-background p-8 hover:border-primary/40">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-secondary transition-transform duration-300 group-hover:scale-110">
+                    <s.icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
+                  </span>
+                  <div>
+                    <h3 className="text-xl text-graphite">{s.title}</h3>
+                    <p className="mt-2 leading-relaxed text-muted-foreground">{s.text}</p>
+                  </div>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -320,12 +336,16 @@ function Index() {
         <div className="mx-auto max-w-6xl px-5 py-28">
           <h2 className="text-3xl text-secondary md:text-4xl">Como funciona o atendimento</h2>
           <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {etapas.map((e) => (
-              <div key={e.n} className="border-t border-secondary/25 pt-6">
-                <p className="font-display text-4xl text-secondary/50">{e.n}</p>
-                <h3 className="mt-4 text-xl text-secondary">{e.title}</h3>
-                <p className="mt-3 leading-relaxed text-secondary/70">{e.text}</p>
-              </div>
+            {etapas.map((e, i) => (
+              <Reveal key={e.n} delay={i * 100}>
+                <div className="group border-t border-secondary/25 pt-6 transition-colors hover:border-secondary/70">
+                  <p className="font-display text-4xl text-secondary/50 transition-colors group-hover:text-secondary">
+                    {e.n}
+                  </p>
+                  <h3 className="mt-4 text-xl text-secondary">{e.title}</h3>
+                  <p className="mt-3 leading-relaxed text-secondary/70">{e.text}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -411,25 +431,74 @@ function Index() {
       </section>
 
       {/* CTA */}
-      <section className="bg-graphite text-secondary">
-        <div className="mx-auto max-w-3xl px-5 py-24 text-center">
-          <h2 className="text-3xl text-secondary md:text-4xl">
-            Dar o primeiro passo já é parte do tratamento
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-secondary/75">
-            Fale comigo pelo WhatsApp e encontre o melhor horário para começar.
-          </p>
-          <div className="mt-10">
-            <Button
-              asChild
-              size="lg"
-              className="h-14 rounded-full px-10 text-lg font-semibold"
-            >
-              <a href={WA} target="_blank" rel="noreferrer">
-                Quero conversar agora
-              </a>
-            </Button>
-          </div>
+      <section className="relative overflow-hidden bg-graphite text-secondary">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <div className="pointer-events-none absolute -left-20 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-primary/40 blur-3xl" />
+        <div className="pointer-events-none absolute -right-16 top-0 h-64 w-64 rounded-full bg-secondary/10 blur-3xl" />
+        <div className="relative mx-auto max-w-4xl px-5 py-28 text-center">
+          <Reveal>
+            <span className="inline-flex items-center gap-2 rounded-full border border-secondary/25 bg-secondary/5 px-4 py-2 text-[11px] uppercase tracking-[0.25em] text-secondary/80">
+              <Sparkles className="h-3.5 w-3.5" strokeWidth={2} />
+              Vagas abertas para novos pacientes
+            </span>
+            <h2 className="mt-8 text-3xl leading-tight text-secondary md:text-5xl">
+              Dar o primeiro passo
+              <br />
+              <span className="italic text-secondary/70">já é parte do tratamento</span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-secondary/75">
+              Uma conversa inicial é suficiente para entender o que te trouxe até aqui e
+              definir o melhor caminho — presencial em Porto Alegre ou online.
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button
+                asChild
+                size="lg"
+                className="shine group h-14 rounded-full px-10 text-lg font-semibold transition-transform hover:scale-[1.03]"
+              >
+                <a href={WA} target="_blank" rel="noreferrer">
+                  Quero conversar agora
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="h-14 rounded-full border-secondary/35 bg-transparent px-10 text-lg font-semibold text-secondary hover:bg-secondary hover:text-graphite"
+              >
+                <a href="#contato">
+                  <CalendarDays className="mr-2 h-5 w-5" />
+                  Ver horários
+                </a>
+              </Button>
+            </div>
+            <ul className="mt-12 grid gap-6 text-left sm:grid-cols-3">
+              {[
+                { icon: ShieldCheck, t: "Sigilo garantido", d: "Código de Ética do Psicólogo." },
+                { icon: Video, t: "Online ou presencial", d: "Você escolhe o formato." },
+                { icon: Users, t: "Quase 30 anos", d: "De experiência clínica." },
+              ].map((b) => (
+                <li
+                  key={b.t}
+                  className="hover-lift flex items-start gap-3 rounded-2xl border border-secondary/15 bg-secondary/5 p-5"
+                >
+                  <b.icon className="mt-0.5 h-5 w-5 shrink-0 text-secondary" strokeWidth={1.5} />
+                  <span>
+                    <span className="block font-medium text-secondary">{b.t}</span>
+                    <span className="block text-sm text-secondary/65">{b.d}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 
