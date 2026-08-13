@@ -7,18 +7,24 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Scheduler } from "@/components/site/Scheduler";
-import heroImg from "@/assets/hero-v2.png.asset.json";
+import { Reveal, ScrollProgress } from "@/components/site/Reveal";
+import heroImg from "@/assets/hero-v3.png.asset.json";
 import sobreImg from "@/assets/sobre.png.asset.json";
 import logoMenu from "@/assets/logo-menu.png.asset.json";
 import logoRodape from "@/assets/logo-rodape.png.asset.json";
 import {
   Brain,
+  ArrowRight,
+  CalendarDays,
   CloudRain,
   HeartCrack,
   Instagram,
+  MessageCircle,
   Mail,
   MapPin,
   Phone,
+  ShieldCheck,
+  Sparkles,
   Trophy,
   Users,
   Video,
@@ -162,6 +168,7 @@ const MAPA =
 function Index() {
   return (
     <div className="min-h-screen bg-background">
+      <ScrollProgress />
       <header className="sticky top-0 z-50 border-b border-border/70 bg-card/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
           <img
@@ -174,13 +181,17 @@ function Index() {
               <a
                 key={n.href}
                 href={n.href}
-                className="text-base font-medium text-graphite/80 transition-colors hover:text-primary"
+                className="story-link text-base font-medium text-graphite/80 transition-colors hover:text-primary"
               >
                 {n.label}
               </a>
             ))}
           </nav>
-          <Button asChild size="lg" className="rounded-full px-7 text-base font-semibold">
+          <Button
+            asChild
+            size="lg"
+            className="shine rounded-full px-7 text-base font-semibold transition-transform hover:scale-[1.04]"
+          >
             <a href="#contato">Agendar</a>
           </Button>
         </div>
@@ -188,9 +199,12 @@ function Index() {
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-card">
+        <div className="pointer-events-none absolute -left-32 top-10 h-96 w-96 rounded-full bg-secondary/50 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
         <div className="mx-auto grid max-w-6xl items-center gap-14 px-5 py-24 md:py-32 lg:grid-cols-2">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-graphite/60">
+          <Reveal>
+            <p className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-[11px] uppercase tracking-[0.25em] text-graphite/70">
+              <Sparkles className="h-3.5 w-3.5 text-primary" strokeWidth={2} />
               Psicanálise · Esporte · Organizações
             </p>
             <h1 className="mt-6 text-4xl leading-[1.08] text-graphite md:text-6xl">
@@ -208,20 +222,21 @@ function Index() {
               <Button
                 asChild
                 size="lg"
-                className="h-14 rounded-full px-10 text-lg font-semibold"
+                className="shine h-14 rounded-full px-10 text-lg font-semibold transition-transform hover:scale-[1.03]"
               >
                 <a href="#contato">Agendar minha sessão</a>
               </Button>
             </div>
-          </div>
-          <div className="relative">
+          </Reveal>
+          <Reveal delay={150} className="relative">
             <div className="absolute inset-x-8 bottom-8 top-16 rounded-[2.5rem] bg-secondary/70" />
+            <div className="absolute inset-x-16 bottom-16 top-24 rounded-[2.5rem] border border-primary/15" />
             <img
               src={heroImg.url}
               alt="Iuri Dall Olmo sentado em sua poltrona de atendimento"
-              className="relative w-full"
+              className="relative w-full float-soft drop-shadow-[0_30px_45px_rgba(0,0,0,0.15)]"
             />
-          </div>
+          </Reveal>
         </div>
       </section>
 
