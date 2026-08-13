@@ -431,25 +431,74 @@ function Index() {
       </section>
 
       {/* CTA */}
-      <section className="bg-graphite text-secondary">
-        <div className="mx-auto max-w-3xl px-5 py-24 text-center">
-          <h2 className="text-3xl text-secondary md:text-4xl">
-            Dar o primeiro passo já é parte do tratamento
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-secondary/75">
-            Fale comigo pelo WhatsApp e encontre o melhor horário para começar.
-          </p>
-          <div className="mt-10">
-            <Button
-              asChild
-              size="lg"
-              className="h-14 rounded-full px-10 text-lg font-semibold"
-            >
-              <a href={WA} target="_blank" rel="noreferrer">
-                Quero conversar agora
-              </a>
-            </Button>
-          </div>
+      <section className="relative overflow-hidden bg-graphite text-secondary">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <div className="pointer-events-none absolute -left-20 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-primary/40 blur-3xl" />
+        <div className="pointer-events-none absolute -right-16 top-0 h-64 w-64 rounded-full bg-secondary/10 blur-3xl" />
+        <div className="relative mx-auto max-w-4xl px-5 py-28 text-center">
+          <Reveal>
+            <span className="inline-flex items-center gap-2 rounded-full border border-secondary/25 bg-secondary/5 px-4 py-2 text-[11px] uppercase tracking-[0.25em] text-secondary/80">
+              <Sparkles className="h-3.5 w-3.5" strokeWidth={2} />
+              Vagas abertas para novos pacientes
+            </span>
+            <h2 className="mt-8 text-3xl leading-tight text-secondary md:text-5xl">
+              Dar o primeiro passo
+              <br />
+              <span className="italic text-secondary/70">já é parte do tratamento</span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-secondary/75">
+              Uma conversa inicial é suficiente para entender o que te trouxe até aqui e
+              definir o melhor caminho — presencial em Porto Alegre ou online.
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button
+                asChild
+                size="lg"
+                className="shine group h-14 rounded-full px-10 text-lg font-semibold transition-transform hover:scale-[1.03]"
+              >
+                <a href={WA} target="_blank" rel="noreferrer">
+                  Quero conversar agora
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="h-14 rounded-full border-secondary/35 bg-transparent px-10 text-lg font-semibold text-secondary hover:bg-secondary hover:text-graphite"
+              >
+                <a href="#contato">
+                  <CalendarDays className="mr-2 h-5 w-5" />
+                  Ver horários
+                </a>
+              </Button>
+            </div>
+            <ul className="mt-12 grid gap-6 text-left sm:grid-cols-3">
+              {[
+                { icon: ShieldCheck, t: "Sigilo garantido", d: "Código de Ética do Psicólogo." },
+                { icon: Video, t: "Online ou presencial", d: "Você escolhe o formato." },
+                { icon: Users, t: "Quase 30 anos", d: "De experiência clínica." },
+              ].map((b) => (
+                <li
+                  key={b.t}
+                  className="hover-lift flex items-start gap-3 rounded-2xl border border-secondary/15 bg-secondary/5 p-5"
+                >
+                  <b.icon className="mt-0.5 h-5 w-5 shrink-0 text-secondary" strokeWidth={1.5} />
+                  <span>
+                    <span className="block font-medium text-secondary">{b.t}</span>
+                    <span className="block text-sm text-secondary/65">{b.d}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 
