@@ -77,21 +77,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Iuri Dall Olmo | Psicologia e Psicanálise" },
+      { title: "Iuri Dall’Olmo | Psicologia e Psicanálise" },
       {
         name: "description",
         content:
           "Psicanálise clínica, psicologia esportiva e organizacional em Porto Alegre. Atendimento presencial e online. CRP 07/08900.",
       },
-      { name: "author", content: "Iuri Dall Olmo" },
-      { property: "og:title", content: "Iuri Dall Olmo | Psicologia e Psicanálise" },
+      { name: "author", content: "Iuri Dall’Olmo" },
+      { property: "og:title", content: "Iuri Dall’Olmo | Psicologia e Psicanálise" },
       {
         property: "og:description",
         content: "Escuta que acolhe. Experiência que transforma.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Iuri Dall’Olmo Psicologia" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
@@ -115,7 +115,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
