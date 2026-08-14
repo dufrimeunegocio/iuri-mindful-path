@@ -8,8 +8,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Scheduler } from "@/components/site/Scheduler";
 import { Reveal, ScrollProgress } from "@/components/site/Reveal";
-import heroImg from "@/assets/hero-v3.png.asset.json";
-import sobreImg from "@/assets/sobre.png.asset.json";
+import { AuthorityMarquee } from "@/components/site/AuthorityMarquee";
+import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
+import heroImg from "@/assets/hero-v4.png.asset.json";
+import sobreImg from "@/assets/sobre-v2.jpg.asset.json";
 import logoMenu from "@/assets/logo-menu.png.asset.json";
 import logoRodape from "@/assets/logo-rodape.png.asset.json";
 import {
@@ -35,22 +38,109 @@ const WA =
   "https://wa.me/5551996398755?text=" +
   encodeURIComponent("Olá, Iuri! Gostaria de saber mais sobre os atendimentos.");
 
+const SITE = "https://iuri-mindful-path.lovable.app";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Psychologist", "LocalBusiness"],
+      "@id": `${SITE}/#clinica`,
+      name: "Iuri Dall’Olmo | Psicologia e Psicanálise",
+      url: SITE,
+      telephone: "+55-51-99639-8755",
+      email: "iuridallolmo@gmail.com",
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Rua Mariante, 288/905",
+        addressLocality: "Porto Alegre",
+        addressRegion: "RS",
+        addressCountry: "BR",
+      },
+      areaServed: [
+        { "@type": "City", name: "Porto Alegre" },
+        { "@type": "Country", name: "Brasil" },
+      ],
+      sameAs: ["https://instagram.com/clinica.iuridallolmo"],
+      founder: { "@id": `${SITE}/#iuri` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE}/#iuri`,
+      name: "Iuri Dall’Olmo",
+      jobTitle: "Psicólogo e Psicanalista",
+      identifier: "CRP 07/08900",
+      url: SITE,
+      email: "iuridallolmo@gmail.com",
+      telephone: "+55-51-99639-8755",
+      knowsAbout: [
+        "Psicanálise clínica",
+        "Psicologia do Esporte",
+        "Psicologia Organizacional",
+        "Ansiedade",
+        "Depressão",
+        "Angústia",
+      ],
+      workLocation: {
+        "@type": "Place",
+        name: "Consultório em Porto Alegre",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Rua Mariante, 288/905",
+          addressLocality: "Porto Alegre",
+          addressRegion: "RS",
+          addressCountry: "BR",
+        },
+      },
+    },
+  ],
+};
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Iuri Dall Olmo | Psicanálise, Psicologia Esportiva e Organizacional" },
+      { title: "Psicanalista em Porto Alegre | Iuri Dall’Olmo — CRP 07/08900" },
       {
         name: "description",
         content:
-          "Quase 30 anos de clínica. Atendimento psicoterapêutico presencial em Porto Alegre e online para adolescentes, adultos, idosos e atletas.",
+          "Psicanálise, psicologia do esporte e organizacional com Iuri Dall’Olmo. Quase 30 anos de clínica, atendimento presencial em Porto Alegre e online. Agende sua sessão.",
       },
       {
         property: "og:title",
-        content: "Iuri Dall Olmo | Psicanálise, Psicologia Esportiva e Organizacional",
+        content: "Psicanalista em Porto Alegre | Iuri Dall’Olmo — CRP 07/08900",
       },
       {
         property: "og:description",
         content: "Escuta que acolhe. Experiência que transforma. Agende sua sessão.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE}/` },
+      { property: "og:locale", content: "pt_BR" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Psicanalista em Porto Alegre | Iuri Dall’Olmo" },
+      {
+        name: "twitter:description",
+        content: "Escuta que acolhe. Experiência que transforma. Agende sua sessão.",
+      },
+      { name: "geo.region", content: "BR-RS" },
+      { name: "geo.placename", content: "Porto Alegre" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+    ],
+    links: [{ rel: "canonical", href: `${SITE}/` }],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(jsonLd) },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faq.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
       },
     ],
   }),
