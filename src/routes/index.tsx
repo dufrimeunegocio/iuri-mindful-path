@@ -8,8 +8,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Scheduler } from "@/components/site/Scheduler";
 import { Reveal, ScrollProgress } from "@/components/site/Reveal";
-import heroImg from "@/assets/hero-v3.png.asset.json";
-import sobreImg from "@/assets/sobre.png.asset.json";
+import { AuthorityMarquee } from "@/components/site/AuthorityMarquee";
+import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
+import heroImg from "@/assets/hero-v4.png.asset.json";
+import sobreImg from "@/assets/sobre-v2.jpg.asset.json";
 import logoMenu from "@/assets/logo-menu.png.asset.json";
 import logoRodape from "@/assets/logo-rodape.png.asset.json";
 import {
@@ -35,22 +38,109 @@ const WA =
   "https://wa.me/5551996398755?text=" +
   encodeURIComponent("Olá, Iuri! Gostaria de saber mais sobre os atendimentos.");
 
+const SITE = "https://iuri-mindful-path.lovable.app";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Psychologist", "LocalBusiness"],
+      "@id": `${SITE}/#clinica`,
+      name: "Iuri Dall’Olmo | Psicologia e Psicanálise",
+      url: SITE,
+      telephone: "+55-51-99639-8755",
+      email: "iuridallolmo@gmail.com",
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Rua Mariante, 288/905",
+        addressLocality: "Porto Alegre",
+        addressRegion: "RS",
+        addressCountry: "BR",
+      },
+      areaServed: [
+        { "@type": "City", name: "Porto Alegre" },
+        { "@type": "Country", name: "Brasil" },
+      ],
+      sameAs: ["https://instagram.com/clinica.iuridallolmo"],
+      founder: { "@id": `${SITE}/#iuri` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE}/#iuri`,
+      name: "Iuri Dall’Olmo",
+      jobTitle: "Psicólogo e Psicanalista",
+      identifier: "CRP 07/08900",
+      url: SITE,
+      email: "iuridallolmo@gmail.com",
+      telephone: "+55-51-99639-8755",
+      knowsAbout: [
+        "Psicanálise clínica",
+        "Psicologia do Esporte",
+        "Psicologia Organizacional",
+        "Ansiedade",
+        "Depressão",
+        "Angústia",
+      ],
+      workLocation: {
+        "@type": "Place",
+        name: "Consultório em Porto Alegre",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Rua Mariante, 288/905",
+          addressLocality: "Porto Alegre",
+          addressRegion: "RS",
+          addressCountry: "BR",
+        },
+      },
+    },
+  ],
+};
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Iuri Dall Olmo | Psicanálise, Psicologia Esportiva e Organizacional" },
+      { title: "Psicanalista em Porto Alegre | Iuri Dall’Olmo — CRP 07/08900" },
       {
         name: "description",
         content:
-          "Quase 30 anos de clínica. Atendimento psicoterapêutico presencial em Porto Alegre e online para adolescentes, adultos, idosos e atletas.",
+          "Psicanálise, psicologia do esporte e organizacional com Iuri Dall’Olmo. Quase 30 anos de clínica, atendimento presencial em Porto Alegre e online. Agende sua sessão.",
       },
       {
         property: "og:title",
-        content: "Iuri Dall Olmo | Psicanálise, Psicologia Esportiva e Organizacional",
+        content: "Psicanalista em Porto Alegre | Iuri Dall’Olmo — CRP 07/08900",
       },
       {
         property: "og:description",
         content: "Escuta que acolhe. Experiência que transforma. Agende sua sessão.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE}/` },
+      { property: "og:locale", content: "pt_BR" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Psicanalista em Porto Alegre | Iuri Dall’Olmo" },
+      {
+        name: "twitter:description",
+        content: "Escuta que acolhe. Experiência que transforma. Agende sua sessão.",
+      },
+      { name: "geo.region", content: "BR-RS" },
+      { name: "geo.placename", content: "Porto Alegre" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+    ],
+    links: [{ rel: "canonical", href: `${SITE}/` }],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(jsonLd) },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faq.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
       },
     ],
   }),
@@ -173,8 +263,11 @@ function Index() {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
           <img
             src={logoMenu.url}
-            alt="Iuri Dall Olmo Psicologia"
+            alt="Iuri Dall’Olmo Psicologia e Psicanálise"
             className="h-16 w-auto md:h-20"
+            width={220}
+            height={80}
+            fetchPriority="high"
           />
           <nav className="hidden items-center gap-8 lg:flex">
             {nav.map((n) => (
@@ -199,21 +292,20 @@ function Index() {
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-card">
-        <div className="pointer-events-none absolute -left-32 top-10 h-96 w-96 rounded-full bg-secondary/50 blur-3xl" />
-        <div className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
-        <div className="mx-auto grid max-w-6xl items-center gap-14 px-5 py-24 md:py-32 lg:grid-cols-2">
-          <Reveal>
+        <div className="pointer-events-none absolute -right-24 bottom-0 -z-0 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
+        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 px-5 py-24 md:py-32 lg:grid-cols-2">
+          <Reveal className="relative z-10">
             <p className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-[11px] uppercase tracking-[0.25em] text-graphite/70">
               <Sparkles className="h-3.5 w-3.5 text-primary" strokeWidth={2} />
               Psicanálise · Esporte · Organizações
             </p>
-            <h1 className="mt-6 text-4xl leading-[1.08] text-graphite md:text-6xl">
+            <h1 className="mt-6 text-4xl font-bold leading-[1.08] text-graphite md:text-6xl">
               Escuta que acolhe.
               <br />
               <span className="text-primary">Experiência que transforma.</span>
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-graphite/75">
-              Sou Iuri Dall Olmo, psicanalista clínico com quase 30 anos de experiência.
+              Sou Iuri Dall’Olmo, psicanalista clínico com quase 30 anos de experiência.
               Atendo adolescentes, adultos, idosos e atletas em Porto Alegre e online,
               em um espaço seguro para elaborar ansiedade, depressão, angústia e as
               estagnações da vida profissional e amorosa.
@@ -224,7 +316,10 @@ function Index() {
                 size="lg"
                 className="shine h-14 rounded-full px-10 text-lg font-semibold transition-transform hover:scale-[1.03]"
               >
-                <a href="#contato">Agendar minha sessão</a>
+                <a href={WA} target="_blank" rel="noopener noreferrer">
+                  <WhatsAppIcon className="mr-2 h-5 w-5" />
+                  Agendar minha sessão
+                </a>
               </Button>
             </div>
           </Reveal>
@@ -233,12 +328,18 @@ function Index() {
             <div className="absolute inset-x-16 bottom-16 top-24 rounded-[2.5rem] border border-primary/15" />
             <img
               src={heroImg.url}
-              alt="Iuri Dall Olmo sentado em sua poltrona de atendimento"
+              alt="Iuri Dall’Olmo, psicanalista em Porto Alegre, sentado na poltrona do consultório"
               className="relative w-full float-soft drop-shadow-[0_30px_45px_rgba(0,0,0,0.15)]"
+              width={1512}
+              height={1024}
+              fetchPriority="high"
+              decoding="async"
             />
           </Reveal>
         </div>
       </section>
+
+      <AuthorityMarquee />
 
       {/* PROBLEMAS */}
       <section id="problemas" className="bg-background">
@@ -296,16 +397,19 @@ function Index() {
               <div className="absolute inset-x-10 bottom-4 top-10 rounded-[2.5rem] bg-secondary/70" />
               <img
                 src={sobreImg.url}
-                alt="Retrato de Iuri Dall Olmo"
-                className="relative w-full"
+                alt="Retrato de Iuri Dall’Olmo, psicólogo e psicanalista (CRP 07/08900)"
+                className="relative w-full rounded-[2rem] object-cover"
+                width={1024}
+                height={1024}
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="order-1 lg:order-2">
               <p className="text-xs uppercase tracking-[0.3em] text-graphite/60">
                 Sobre mim
               </p>
-              <h2 className="mt-5 text-3xl text-graphite md:text-4xl">Iuri Dall Olmo</h2>
+              <h2 className="mt-5 text-3xl text-graphite md:text-4xl">Iuri Dall’Olmo</h2>
               <div className="mt-6 space-y-5 text-lg leading-relaxed text-graphite/75">
                 <p>
                   Psicólogo e psicanalista com quase 30 anos dedicados à clínica. Ao longo
@@ -529,8 +633,10 @@ function Index() {
           <div className="flex flex-col items-start gap-4">
             <img
               src={logoRodape.url}
-              alt="Iuri Dall Olmo Psicologia"
+              alt="Iuri Dall’Olmo Psicologia e Psicanálise"
               className="h-28 w-auto"
+              width={280}
+              height={112}
               loading="lazy"
             />
             <p className="text-sm leading-relaxed text-secondary/70">
@@ -585,11 +691,11 @@ function Index() {
         </div>
         <div className="border-t border-secondary/15">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-5 py-6 text-xs text-secondary/60 sm:flex-row">
-            <p>© {new Date().getFullYear()} Iuri Dall Olmo Psicologia.</p>
+            <p>© {new Date().getFullYear()} Iuri Dall’Olmo Psicologia.</p>
             <a
               href="https://www.instagram.com/dufrimeunegocio?igsh=bDd3N2tyb21qN2Zu&utm_source=qr"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="transition-colors hover:text-secondary"
             >
               Desenvolvido com ❤️ por @dufrimeunegocio
@@ -597,6 +703,7 @@ function Index() {
           </div>
         </div>
       </footer>
+      <FloatingWhatsApp href={WA} />
     </div>
   );
 }
