@@ -11,10 +11,10 @@ import { Reveal, ScrollProgress } from "@/components/site/Reveal";
 import { AuthorityMarquee } from "@/components/site/AuthorityMarquee";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
-import heroImg from "@/assets/hero-v4.png.asset.json";
-import sobreImg from "@/assets/sobre-v2.jpg.asset.json";
-import logoMenu from "@/assets/logo-menu.png.asset.json";
-import logoRodape from "@/assets/logo-rodape.png.asset.json";
+const heroImg = { url: "/hero.PNG" };
+const sobreImg = { url: "/sobre.JPG" };
+const logoMenu = { url: "/logo-menu.JPG" };
+const logoRodape = { url: "/logo-rodape.JPG" };
 import {
   Brain,
   ArrowRight,
