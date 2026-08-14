@@ -633,8 +633,10 @@ function Index() {
           <div className="flex flex-col items-start gap-4">
             <img
               src={logoRodape.url}
-              alt="Iuri Dall Olmo Psicologia"
+              alt="Iuri Dall’Olmo Psicologia e Psicanálise"
               className="h-28 w-auto"
+              width={280}
+              height={112}
               loading="lazy"
             />
             <p className="text-sm leading-relaxed text-secondary/70">
@@ -689,11 +691,11 @@ function Index() {
         </div>
         <div className="border-t border-secondary/15">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-5 py-6 text-xs text-secondary/60 sm:flex-row">
-            <p>© {new Date().getFullYear()} Iuri Dall Olmo Psicologia.</p>
+            <p>© {new Date().getFullYear()} Iuri Dall’Olmo Psicologia.</p>
             <a
               href="https://www.instagram.com/dufrimeunegocio?igsh=bDd3N2tyb21qN2Zu&utm_source=qr"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="transition-colors hover:text-secondary"
             >
               Desenvolvido com ❤️ por @dufrimeunegocio
@@ -701,6 +703,7 @@ function Index() {
           </div>
         </div>
       </footer>
+      <FloatingWhatsApp href={WA} />
     </div>
   );
 }
