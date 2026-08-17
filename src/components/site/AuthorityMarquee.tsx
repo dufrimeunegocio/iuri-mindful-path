@@ -1,5 +1,5 @@
 const ITENS = [
-  "Quase 30 anos de clínica",
+  "30 anos de experiência clínica",
   "CRP 07/08900",
   "Psicanálise clínica",
   "Psicologia do Esporte",

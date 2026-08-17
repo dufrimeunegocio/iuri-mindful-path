@@ -77,20 +77,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Iuri Dall’Olmo | Psicologia e Psicanálise" },
+      { title: "Iuri Dall' Olmo | Psicanalista e Psicólogo em Porto Alegre" },
       {
         name: "description",
         content:
-          "Psicanálise clínica, psicologia esportiva e organizacional em Porto Alegre. Atendimento presencial e online. CRP 07/08900.",
+          "Psicanálise clínica, psicologia esportiva e organizacional em Porto Alegre. Iuri Dall' Olmo oferece atendimento presencial e online. CRP 07/08900.",
       },
-      { name: "author", content: "Iuri Dall’Olmo" },
-      { property: "og:title", content: "Iuri Dall’Olmo | Psicologia e Psicanálise" },
+      { name: "author", content: "Iuri Dall' Olmo" },
+      { property: "og:title", content: "Iuri Dall' Olmo | Psicanalista e Psicólogo em Porto Alegre" },
       {
         property: "og:description",
-        content: "Escuta que acolhe. Experiência que transforma.",
+        content: "Escuta que acolhe. 30 anos de experiência clínica. Atendimento presencial e online.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Iuri Dall’Olmo Psicologia" },
+      { property: "og:site_name", content: "Iuri Dall' Olmo" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
