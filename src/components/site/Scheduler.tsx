@@ -29,7 +29,7 @@ export function Scheduler() {
   const agendar = () => {
     if (!date || !hora) return;
     const dataFmt = format(date, "dd/MM/yyyy (EEEE)", { locale: ptBR });
-    const msg = `Olá, Iuri! Gostaria de agendar uma sessão. O horário do dia ${dataFmt} às ${hora} estaria disponível?`;
+    const msg = `Olá, Iuri Dall' Olmo! Gostaria de agendar uma sessão de psicanálise. O horário do dia ${dataFmt} às ${hora} estaria disponível?`;
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
   };
 

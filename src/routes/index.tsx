@@ -36,7 +36,7 @@ import {
 
 const WA =
   "https://wa.me/5551996398755?text=" +
-  encodeURIComponent("Olá, Iuri! Gostaria de saber mais sobre os atendimentos.");
+  encodeURIComponent("Olá, Iuri Dall' Olmo! Gostaria de saber mais sobre os atendimentos de psicanálise e psicologia em Porto Alegre.");
 
 const SITE = "https://iuri-mindful-path.lovable.app";
 
@@ -46,7 +46,7 @@ const jsonLd = {
     {
       "@type": ["Psychologist", "LocalBusiness"],
       "@id": `${SITE}/#clinica`,
-      name: "Iuri Dall’Olmo | Psicologia e Psicanálise",
+      name: "Iuri Dall' Olmo | Psicanálise e Psicologia",
       url: SITE,
       telephone: "+55-51-99639-8755",
       email: "iuridallolmo@gmail.com",
@@ -68,7 +68,7 @@ const jsonLd = {
     {
       "@type": "Person",
       "@id": `${SITE}/#iuri`,
-      name: "Iuri Dall’Olmo",
+      name: "Iuri Dall' Olmo",
       jobTitle: "Psicólogo e Psicanalista",
       identifier: "CRP 07/08900",
       url: SITE,
@@ -100,15 +100,15 @@ const jsonLd = {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Psicanalista em Porto Alegre | Iuri Dall’Olmo — CRP 07/08900" },
+      { title: "Psicanalista em Porto Alegre | Iuri Dall' Olmo — CRP 07/08900" },
       {
         name: "description",
         content:
-          "Psicanálise, psicologia do esporte e organizacional com Iuri Dall’Olmo. Quase 30 anos de clínica, atendimento presencial em Porto Alegre e online. Agende sua sessão.",
+          "Psicanálise, psicologia do esporte e organizacional com Iuri Dall' Olmo. 30 anos de experiência clínica, atendimento presencial em Porto Alegre e online.",
       },
       {
         property: "og:title",
-        content: "Psicanalista em Porto Alegre | Iuri Dall’Olmo — CRP 07/08900",
+        content: "Psicanalista em Porto Alegre | Iuri Dall' Olmo — CRP 07/08900",
       },
       {
         property: "og:description",
@@ -118,7 +118,7 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: `${SITE}/` },
       { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Psicanalista em Porto Alegre | Iuri Dall’Olmo" },
+      { name: "twitter:title", content: "Psicanalista em Porto Alegre | Iuri Dall' Olmo" },
       {
         name: "twitter:description",
         content: "Escuta que acolhe. Experiência que transforma. Agende sua sessão.",
@@ -263,7 +263,7 @@ function Index() {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
           <img
             src={logoMenu.url}
-            alt="Iuri Dall’Olmo Psicologia e Psicanálise"
+            alt="Logotipo Iuri Dall' Olmo Psicologia e Psicanálise"
             className="h-16 w-auto md:h-20"
             width={220}
             height={80}
@@ -305,7 +305,7 @@ function Index() {
               <span className="text-primary">Experiência que transforma.</span>
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-graphite/75">
-              Sou Iuri Dall’Olmo, psicanalista clínico com quase 30 anos de experiência.
+              Sou Iuri Dall' Olmo, psicanalista clínico com 30 anos de experiência clínica.
               Atendo adolescentes, adultos, idosos e atletas em Porto Alegre e online,
               em um espaço seguro para elaborar ansiedade, depressão, angústia e as
               estagnações da vida profissional e amorosa.
@@ -328,7 +328,7 @@ function Index() {
             <div className="absolute inset-x-16 bottom-16 top-24 rounded-[2.5rem] border border-primary/15" />
             <img
               src={heroImg.url}
-              alt="Iuri Dall’Olmo, psicanalista em Porto Alegre, sentado na poltrona do consultório"
+              alt="Iuri Dall' Olmo, psicanalista em Porto Alegre, sentado na poltrona do consultório"
               className="relative w-full float-soft drop-shadow-[0_30px_45px_rgba(0,0,0,0.15)]"
               width={1512}
               height={1024}
@@ -397,7 +397,7 @@ function Index() {
               <div className="absolute inset-x-10 bottom-4 top-10 rounded-[2.5rem] bg-secondary/70" />
               <img
                 src={sobreImg.url}
-                alt="Retrato de Iuri Dall’Olmo, psicólogo e psicanalista (CRP 07/08900)"
+                alt="Retrato de Iuri Dall' Olmo, psicólogo e psicanalista em Porto Alegre (CRP 07/08900)"
                 className="relative w-full rounded-[2rem] object-cover"
                 width={1024}
                 height={1024}
@@ -409,10 +409,10 @@ function Index() {
               <p className="text-xs uppercase tracking-[0.3em] text-graphite/60">
                 Sobre mim
               </p>
-              <h2 className="mt-5 text-3xl text-graphite md:text-4xl">Iuri Dall’Olmo</h2>
+              <h2 className="mt-5 text-3xl text-graphite md:text-4xl text-balance">Iuri Dall' Olmo</h2>
               <div className="mt-6 space-y-5 text-lg leading-relaxed text-graphite/75">
                 <p>
-                  Psicólogo e psicanalista com quase 30 anos dedicados à clínica. Ao longo
+                  Psicólogo e psicanalista com 30 anos dedicados à experiência clínica. Ao longo
                   desse percurso, acompanhei adolescentes em construção, adultos diante de
                   escolhas difíceis, idosos revisitando a própria história e atletas
                   lidando com a pressão do alto rendimento.
@@ -588,7 +588,7 @@ function Index() {
               {[
                 { icon: ShieldCheck, t: "Sigilo garantido", d: "Código de Ética do Psicólogo." },
                 { icon: Video, t: "Online ou presencial", d: "Você escolhe o formato." },
-                { icon: Users, t: "Quase 30 anos", d: "De experiência clínica." },
+                { icon: Users, t: "30 anos", d: "De experiência clínica." },
               ].map((b) => (
                 <li
                   key={b.t}
@@ -633,7 +633,7 @@ function Index() {
           <div className="flex flex-col items-start gap-4">
             <img
               src={logoRodape.url}
-              alt="Iuri Dall’Olmo Psicologia e Psicanálise"
+              alt="Logotipo Iuri Dall' Olmo Psicologia e Psicanálise"
               className="h-28 w-auto"
               width={280}
               height={112}
@@ -691,7 +691,7 @@ function Index() {
         </div>
         <div className="border-t border-secondary/15">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-5 py-6 text-xs text-secondary/60 sm:flex-row">
-            <p>© {new Date().getFullYear()} Iuri Dall’Olmo Psicologia.</p>
+            <p>© {new Date().getFullYear()} Iuri Dall' Olmo Psicologia.</p>
             <a
               href="https://www.instagram.com/dufrimeunegocio?igsh=bDd3N2tyb21qN2Zu&utm_source=qr"
               target="_blank"
