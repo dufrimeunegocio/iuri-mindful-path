@@ -36,7 +36,7 @@ import {
 
 const WA =
   "https://wa.me/5551996398755?text=" +
-  encodeURIComponent("Olá, Iuri! Gostaria de saber mais sobre os atendimentos.");
+  encodeURIComponent("Olá, Iuri Dall' Olmo! Gostaria de saber mais sobre os atendimentos de psicanálise e psicologia em Porto Alegre.");
 
 const SITE = "https://iuri-mindful-path.lovable.app";
 
@@ -588,7 +588,7 @@ function Index() {
               {[
                 { icon: ShieldCheck, t: "Sigilo garantido", d: "Código de Ética do Psicólogo." },
                 { icon: Video, t: "Online ou presencial", d: "Você escolhe o formato." },
-                { icon: Users, t: "Quase 30 anos", d: "De experiência clínica." },
+                { icon: Users, t: "30 anos", d: "De experiência clínica." },
               ].map((b) => (
                 <li
                   key={b.t}
@@ -633,7 +633,7 @@ function Index() {
           <div className="flex flex-col items-start gap-4">
             <img
               src={logoRodape.url}
-              alt="Iuri Dall’Olmo Psicologia e Psicanálise"
+              alt="Logotipo Iuri Dall' Olmo Psicologia e Psicanálise"
               className="h-28 w-auto"
               width={280}
               height={112}
@@ -691,7 +691,7 @@ function Index() {
         </div>
         <div className="border-t border-secondary/15">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-5 py-6 text-xs text-secondary/60 sm:flex-row">
-            <p>© {new Date().getFullYear()} Iuri Dall’Olmo Psicologia.</p>
+            <p>© {new Date().getFullYear()} Iuri Dall' Olmo Psicologia.</p>
             <a
               href="https://www.instagram.com/dufrimeunegocio?igsh=bDd3N2tyb21qN2Zu&utm_source=qr"
               target="_blank"
