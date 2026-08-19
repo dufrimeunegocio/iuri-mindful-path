@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://iuri-mindful-path.lovable.app/sitemap.xml
+Sitemap: https://clinicaiuridallolmo.com/sitemap.xml
